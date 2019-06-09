@@ -21,7 +21,8 @@ module.exports = {
   ],
   coverageReporters: [
     "html",
-    "text"
+    "text",
+    "json-summary"
   ],
   reporters: [
     ["jest-nyan-reporter", {

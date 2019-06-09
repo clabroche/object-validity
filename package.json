@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "testWatch": "npm run test -- --watch"
+    "testWatch": "npm run test -- --watch",
+    "coverage": "npm run test -- --coverage",
+    "makeBadge": "npm run makeCoverageBadge && npm run makeAuditBadge ",
+    "makeAuditBadge": "badge-audit > ./badge-audit.svg",
+    "makeCoverageBadge": "npm run coverage && make-coverage-badge --output-path ./badge.svg",
+    "preversion": "npm run makeBadge"
   },
   "author": "clabroche",
   "license": "MIT",
@@ -14,9 +19,11 @@
     "chai": "^4.2.0",
     "chai-spies": "^1.0.0",
     "jest": "^24.8.0",
-    "jest-nyan-reporter": "git://github.com/abdulhannanali/jest-nyan-reporter.git#4a0da6f76dbee849a9201815341f5d8fd6e68bb9"
+    "jest-nyan-reporter": "git://github.com/abdulhannanali/jest-nyan-reporter.git#4a0da6f76dbee849a9201815341f5d8fd6e68bb9",
+    "make-coverage-badge": "^1.1.1"
   },
   "dependencies": {
+    "@iryu54/badge-audit": "^1.0.1",
     "type-detect": "^4.0.8"
   }
 }
