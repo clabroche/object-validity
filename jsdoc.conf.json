@@ -1,0 +1,8 @@
+{
+  "opts": {
+    "source": {
+      "excludePattern": "**/*\\.spec\\.js"
+    },
+    "template": "./node_modules/tsd-jsdoc/dist"
+  }
+}

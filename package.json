@@ -1,0 +1,22 @@
+{
+  "name": "validator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "testWatch": "npm run test -- --watch"
+  },
+  "author": "clabroche",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^24.0.13",
+    "chai": "^4.2.0",
+    "chai-spies": "^1.0.0",
+    "jest": "^24.8.0",
+    "jest-nyan-reporter": "git://github.com/abdulhannanali/jest-nyan-reporter.git#4a0da6f76dbee849a9201815341f5d8fd6e68bb9"
+  },
+  "dependencies": {
+    "type-detect": "^4.0.8"
+  }
+}
