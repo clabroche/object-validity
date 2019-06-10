@@ -14,7 +14,7 @@ validator => validator.be('number').min(2).max(5)
 ```
 
 ``` javascript
-const {Schema} = require('@iryu54/object-validity)
+const {Schema} = require('@iryu54/object-validity')
 const objectToValidate = {
   number: 10,
   nestedObject: {
