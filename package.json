@@ -25,6 +25,5 @@
   "dependencies": {
     "@iryu54/badge-audit": "^1.0.1",
     "type-detect": "^4.0.8"
-  },
-  "typings": "./typings/index.d.ts"
+  }
 }

@@ -1,3 +1,5 @@
+/// <reference path="../typings/index.d.ts"/>
+
 const ValidationError = require('./Errors/ValidationError')
 const typeDetect = require('type-detect');
 
