@@ -174,5 +174,53 @@ describe('Validation', function() {
       expect(_ => new Validation(undefined).null()).to.throw(ValidationError)
     })
   })
+  describe('#equal', function() {
+    it('should pass test equal with string', function() {
+      expect(_ => new Validation('test').equal('test')).to.not.throw(ValidationError)
+      expect(_ => new Validation('test').equal('hey', 'test', 'ho')).to.not.throw(ValidationError)
+    })
+    it('should pass test equal with number', function() {
+      expect(_ => new Validation(2).equal(2)).to.not.throw(ValidationError)
+      expect(_ => new Validation(2).equal('hey', 2, 'ho')).to.not.throw(ValidationError)
+    })
+    it('should pass test equal with boolean', function() {
+      expect(_ => new Validation(true).equal(true)).to.not.throw(ValidationError)
+      expect(_ => new Validation(true).equal('hey', true, 'ho')).to.not.throw(ValidationError)
+      expect(_ => new Validation(true).equal('hey', true, 'ho')).to.not.throw(ValidationError)
+      expect(_ => new Validation(false).equal(false)).to.not.throw(ValidationError)
+      expect(_ => new Validation(false).equal('hey', false, 'ho')).to.not.throw(ValidationError)
+      expect(_ => new Validation(false).equal('hey', false, 'ho')).to.not.throw(ValidationError)
+    })
+    it('should pass test equal with object', function() {
+      const object = {}
+      expect(_ => new Validation(object).equal(object)).to.not.throw(ValidationError)
+      expect(_ => new Validation(object).equal('hey', object, 'ho')).to.not.throw(ValidationError)
+      expect(_ => new Validation(object).equal('hey', object, 'ho')).to.not.throw(ValidationError)
+    })
+
+    it('should not pass test equal with string', function() {
+      expect(_ => new Validation('test').equal('tes')).to.throw(ValidationError)
+      expect(_ => new Validation('test').equal('hey', 'ho')).to.throw(ValidationError)
+    })
+    it('should not pass test equal with number', function() {
+      expect(_ => new Validation(2).equal(3)).to.throw(ValidationError)
+      expect(_ => new Validation(2).equal(3, 'ho')).to.throw(ValidationError)
+    })
+    it('should not pass test equal with boolean', function() {
+      expect(_ => new Validation(true).equal(false)).to.throw(ValidationError)
+      expect(_ => new Validation(true).equal('hey', false, 'ho')).to.throw(ValidationError)
+      expect(_ => new Validation(true).equal('hey', false, 'ho')).to.throw(ValidationError)
+      expect(_ => new Validation(false).equal(true)).to.throw(ValidationError)
+      expect(_ => new Validation(false).equal('hey', true, 'ho')).to.throw(ValidationError)
+      expect(_ => new Validation(false).equal('hey', true, 'ho')).to.throw(ValidationError)
+    })
+    it('should not pass test equal with object', function() {
+      const object = {}
+      expect(_ => new Validation(object).equal({})).to.throw(ValidationError)
+      expect(_ => new Validation(object).equal('hey', {}, 'ho')).to.throw(ValidationError)
+      expect(_ => new Validation(object).equal('hey', {}, 'ho')).to.throw(ValidationError)
+    })
+    
+  })
   
 })

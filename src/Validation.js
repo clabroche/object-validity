@@ -26,6 +26,12 @@ Validation.prototype.between = function(min = 0, max = Infinity) {
 Validation.prototype.number = function() {
   return this.be('number')
 }
+Validation.prototype.equal = function(...equalities) {
+  const valid = equalities.map(e => this.expected === e).filter(e => e)
+  if (!valid.length)
+    throw new ValidationError(`${this.expected} should be equal to ${equalities.join(' or ')}`)
+  return this
+}
 Validation.prototype.object = function() {
   return this.be('object')
 }
