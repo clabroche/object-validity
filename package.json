@@ -7,7 +7,7 @@
     "test": "jest",
     "testWatch": "npm run test -- --watch",
     "coverage": "npm run test -- --coverage",
-    "makeBadge": "npm run makeCoverageBadge && npm run makeAuditBadge ",
+    "makeBadge": "npm run makeCoverageBadge && npm run makeAuditBadge",
     "makeAuditBadge": "badge-audit > ./badge-audit.svg",
     "makeCoverageBadge": "npm run coverage && make-coverage-badge --output-path ./badge.svg",
     "preversion": "npm run makeBadge"
