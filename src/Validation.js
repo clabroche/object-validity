@@ -43,7 +43,7 @@ Validation.prototype.array = function() {
 }
 Validation.prototype.lengthOf = function(nb) {
   if(!this.expected || this.expected.length !== nb)
-    throw new ValidationError(`${this.expected} should be true`)
+    throw new ValidationError(`${this.expected} should be length of ${nb}` )
 }
 Validation.prototype.boolean = function() {
   return this.be('boolean')
