@@ -9,8 +9,8 @@
     "coverage": "npm run test -- --coverage",
     "makeBadge": "npm run makeCoverageBadge && npm run makeAuditBadge",
     "makeAuditBadge": "badge-audit > ./badge-audit.svg",
-    "makeCoverageBadge": "npm run coverage && make-coverage-badge --output-path ./badge.svg",
-    "preversion": "npm run makeBadge"
+    "makeCoverageBadge": "npm run coverage && make-coverage-badge --output-path ./badge.svg && git add badge.svg",
+    "version": "npm run makeBadge"
   },
   "author": "clabroche",
   "license": "MIT",
