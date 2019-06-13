@@ -5,6 +5,7 @@ declare type ValidationModel  = {
   number: () => ValidationModel
   string: () => ValidationModel
   array: () => ValidationModel
+  lengthOf: (nb: number) => ValidationModel
   equal: (...equalities: any[]) => ValidationModel
   object: () => ValidationModel
   boolean: () => ValidationModel

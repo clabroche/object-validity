@@ -78,6 +78,26 @@ describe('Validation', function() {
     })
   })
 
+  describe('#lengthOf', function() {
+    it('an array with length 2 should be valid', function() {
+      expect(_ => new Validation([1, 2]).lengthOf(2)).to.not.throw(ValidationError)
+    })
+    it('a string length 2 should be valid', function() {
+      expect(_ => new Validation('12').lengthOf(2)).to.not.throw(ValidationError)
+    })
+    it('an array like with length 2 should be valid', function() {
+      expect(_ => new Validation({length: 2}).lengthOf(2)).to.not.throw(ValidationError)
+    })
+    it('should not be valid', function() {
+      expect(_ => new Validation('5').lengthOf(2)).to.throw(ValidationError)
+      expect(_ => new Validation(5).lengthOf(2)).to.throw(ValidationError)
+      expect(_ => new Validation({}).lengthOf(2)).to.throw(ValidationError)
+      expect(_ => new Validation(null).lengthOf(2)).to.throw(ValidationError)
+      expect(_ => new Validation(undefined).lengthOf(2)).to.throw(ValidationError)
+      expect(_ => new Validation(true).lengthOf(2)).to.throw(ValidationError)
+    })
+  })
+
   describe('#object', function() {
     it('an object should be an object', function() {
       expect(_ => new Validation({}).object()).to.not.throw(ValidationError)
