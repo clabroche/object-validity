@@ -57,11 +57,16 @@ Validation.prototype.toBeFalsy = function() {
     throw new ValidationError(`${this.expected} should be false`)
 }
 /**
- * @param {'number' | 'object' | 'array' | 'boolean' | 'string'} type
+ * @param {'number' | 'object' | 'array' | 'boolean' | 'string' | Array<'number' | 'object' | 'array' | 'boolean' | 'string' >} _type
  */
-Validation.prototype.be = function(type = 'object') {
-  if(typeDetect(this.expected).toLowerCase() !== type.toLowerCase()) {
-    throw new ValidationError(`${this.expected} should be ${type}`)
+Validation.prototype.be = function(_type = 'object') {
+  if(Array.isArray(_type)) {
+    const isValid = _type.includes(typeDetect(this.expected).toLowerCase())
+    if(!isValid) throw new ValidationError(`${this.expected} should be ${_type}`)
+  } else {
+    if(typeDetect(this.expected).toLowerCase() !== _type.toLowerCase()) {
+      throw new ValidationError(`${this.expected} should be ${_type}`)
+    }
   }
   return this
 }

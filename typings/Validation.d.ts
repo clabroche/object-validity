@@ -11,7 +11,7 @@ declare type ValidationModel  = {
   boolean: () => ValidationModel
   toBeTruthy: () => ValidationModel
   toBeFalsy: () => ValidationModel
-  be: (type: 'number' | 'object' | 'array') => ValidationModel
+  be: (type: 'number' | 'object' | 'array' | 'boolean' | 'string' | Array<'number' | 'object' | 'array' | 'boolean' | 'string' >) => ValidationModel
   notNull: () => ValidationModel
   null: () => ValidationModel
 }

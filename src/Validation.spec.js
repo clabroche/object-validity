@@ -160,12 +160,16 @@ describe('Validation', function() {
       expect(_ => new Validation('').be('string')).to.not.throw(ValidationError)
       expect(_ => new Validation(2).be('number')).to.not.throw(ValidationError)
       expect(_ => new Validation(true).be('boolean')).to.not.throw(ValidationError)
+      expect(_ => new Validation('12').be(['string', 'object'])).to.not.throw(ValidationError)
+      expect(_ => new Validation({}).be(['string', 'object'])).to.not.throw(ValidationError)
     })
     it('should throw an error if array ', function() {
       expect(_ => new Validation([]).be('number')).to.throw(ValidationError)
       expect(_ => new Validation([]).be('string')).to.throw(ValidationError)
       expect(_ => new Validation([]).be('object')).to.throw(ValidationError)
       expect(_ => new Validation([]).be('boolean')).to.throw(ValidationError)
+      expect(_ => new Validation(12).be(['boolean', 'object'])).to.throw(ValidationError)
+      expect(_ => new Validation('12').be(['boolean', 'object'])).to.throw(ValidationError)
     })
   })
   describe('#notNull', function() {
@@ -239,8 +243,7 @@ describe('Validation', function() {
       expect(_ => new Validation(object).equal({})).to.throw(ValidationError)
       expect(_ => new Validation(object).equal('hey', {}, 'ho')).to.throw(ValidationError)
       expect(_ => new Validation(object).equal('hey', {}, 'ho')).to.throw(ValidationError)
-    })
-    
+    })    
   })
   
 })
