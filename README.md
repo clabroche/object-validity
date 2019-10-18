@@ -1,6 +1,8 @@
 # Object-validity
 ![coverage](./badge.svg)
-![audit](./badge-audit.svg)
+
+[![Actions Status](https://github.com/clabroche/object-validity/workflows/Node%20CI/badge.svg)](https://github.com/clabroche/object-validity/actions)
+
 ## Install
 ``` bash 
 npm i @iryu54/object-validity
