@@ -23,7 +23,7 @@ Schema.prototype.validate = function (object, schema = this.schema, valid = { va
     }
   }
   if (!valid.valid) return valid
-  Object.keys(schema).map(key => {
+  Object.keys(schema).forEach(key => {
     const currentPath = path ? `${path}.${key}` : `${key}`
     const field = schema[key]
     const expected = object[key]
@@ -51,7 +51,7 @@ Schema.prototype.validate = function (object, schema = this.schema, valid = { va
           error: `${currentPath} should be an array`
         }
       } else {
-        expected.map(o => {
+        expected.forEach(o => {
           const validResult = this.validate(o, field[0], valid, currentPath)
           if (valid.valid && !validResult.valid) valid = validResult
         })

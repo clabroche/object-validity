@@ -4,7 +4,7 @@ const Validation = require('./Validation.js')
 
 describe('Validation', function() {
   it('All exported functions should be valid', function() {
-    Object.keys(Validation).map(key => {
+    Object.keys(Validation).forEach(key => {
       const validationFunction = Validation[key]
       expect(validationFunction).to.be.a('function')
       const returnFunction = validationFunction()
