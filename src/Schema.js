@@ -15,17 +15,29 @@ function Schema(schema) {
  * @param {ValidationReturn} valid
  * @return {ValidationReturn}
  */
-Schema.prototype.validate = function(object, schema = this.schema, valid = { valid: true, error: null}) {
-  if(!valid.valid) return valid
+Schema.prototype.validate = function (object, schema = this.schema, valid = { valid: true, error: null }, path = '') {
+  if (!object) {
+    valid = {
+      valid: false,
+      error: 'Validate object is null'
+    }
+  }
+  if (!valid.valid) return valid
   Object.keys(schema).map(key => {
+    const currentPath = path ? `${path}.${key}` : `${key}`
     const field = schema[key]
     const expected = object[key]
-    if(typeof field === 'function') {
+    if (!object[key]) {
+      valid = {
+        valid: false,
+        error: `Field ${currentPath} must exists`
+      }
+    } else if (typeof field === 'function') {
       try {
         const validation = new Validation(expected)
         field.call(this, validation, expected)
       } catch (error) {
-        if(error instanceof ValidationError) {
+        if (error instanceof ValidationError) {
           valid = {
             valid: false,
             error: error.message
@@ -33,12 +45,19 @@ Schema.prototype.validate = function(object, schema = this.schema, valid = { val
         }
       }
     } else if (Array.isArray(field)) {
-      expected.map(o => {
-        const validResult = this.validate(o, field[0], valid)
-        if(valid.valid && !validResult.valid) valid = validResult
-      })
+      if (!Array.isArray(expected)) {
+        valid = {
+          valid: false,
+          error: `${currentPath} should be an array`
+        }
+      } else {
+        expected.map(o => {
+          const validResult = this.validate(o, field[0], valid, currentPath)
+          if (valid.valid && !validResult.valid) valid = validResult
+        })
+      }
     } else {
-      valid = this.validate(expected, field, valid)
+      valid = this.validate(expected, field, valid, currentPath)
     }
   })
   return valid
