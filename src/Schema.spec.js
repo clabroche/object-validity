@@ -48,7 +48,7 @@ describe('Schema', function() {
       ]
     })
     expect(valid).to.be.false
-    expect(error).to.be.equal('10 should be inferior to 3')
+    expect(error).to.be.equal('(number): 10 should be inferior to 3')
   })
 
   it('should make an error on empty object', function () {

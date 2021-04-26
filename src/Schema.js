@@ -40,7 +40,7 @@ Schema.prototype.validate = function (object, schema = this.schema, valid = { va
         if (error instanceof ValidationError) {
           valid = {
             valid: false,
-            error: error.message
+            error: `(${currentPath}): ${error.message}`
           }
         }
       }
